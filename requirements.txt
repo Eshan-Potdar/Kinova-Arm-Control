@@ -1,0 +1,6 @@
+# Ubuntu ROS2 side dependencies
+# ROS2 Humble must be installed separately: https://docs.ros.org/en/humble/Installation.html
+# MoveIt2: sudo apt install -y ros-humble-moveit
+# Kinova Gen3 ROS2 package: https://github.com/Kinovarobotics/ros2_kortex
+
+python3-opencv
