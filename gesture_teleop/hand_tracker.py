@@ -26,13 +26,13 @@ class HandTrackerNode(Node):
                 d = json.loads(data.decode())
                 msg = Point()
                 msg.x = d['x']
-                msg.y = d['y']
-                msg.z = d['z']
+                msg.y = d.get('depth', 0.0)   # using Point.y to carry depth
+                msg.z = d['y']                # using Point.z to carry vertical
                 self.publisher.publish(msg)
                 grip_msg = Bool()
                 grip_msg.data = d['grip']
                 self.grip_publisher.publish(grip_msg)
-                self.get_logger().info(f'Received: x={msg.x:.2f} z={msg.z:.2f} grip={grip_msg.data}')
+                self.get_logger().info(f'Received: x={msg.x:.2f} depth={msg.y:.3f} vert={msg.z:.2f} grip={grip_msg.data}')
             except Exception as e:
                 self.get_logger().error(f'Error: {e}')
 
